@@ -18,8 +18,14 @@ namespace User.Controller
             {
                 var request = await brasilApiService.GetEnderecoByCEP(CEP);
 
-                var enderecoReturn = new EnderecoDTO();
-                enderecoReturn.PrencherDTO(request);
+                var enderecoReturn = new EnderecoDTO() 
+                {
+                    CEP = request.cep,
+                    Rua = request.street,
+                    Bairro = request.neighborhood,
+                    Cidade = request.city,
+                    Estado = request.state,
+                };
 
                 return Results.Ok(enderecoReturn);
             });
